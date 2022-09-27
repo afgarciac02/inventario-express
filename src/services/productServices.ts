@@ -5,8 +5,8 @@ import {connect} from '../app';
 export const getProduct = async () => {
     try {
         const conn = await connect();
-        const inventory =  await conn.query('SELECT * FROM product');
-        const response = inventory[0];
+        const product =  await conn.query('SELECT * FROM product');
+        const response = JSON.stringify(product);
         return response;
     } catch (error) {
         console.log(error);
@@ -17,8 +17,8 @@ export const getProduct = async () => {
 export const getProductById =async (id:number) => {
     try {
         const conn = await connect();
-        const inventory =  await conn.query('SELECT * FROM product WHERE id = ' + id);
-        const response = inventory[0];
+        const product =  await conn.query('SELECT * FROM product WHERE id = ' + id);
+        const response = JSON.stringify(product);
         return response;
     } catch (error) {
         console.log(error);
@@ -29,8 +29,8 @@ export const getProductById =async (id:number) => {
 export const getProductByName =async (name:string) => {
     try {
         const conn = await connect();
-        const inventory =  await conn.query('SELECT * FROM product WHERE name = ' + name);
-        const response = inventory[0];
+        const product =  await conn.query('SELECT * FROM product WHERE name = "' + name+ '"');
+        const response = JSON.stringify(product);
         return response;
     } catch (error) {
         console.log(error);
@@ -38,16 +38,12 @@ export const getProductByName =async (name:string) => {
     return false;
 }
 
-export const addProduct = async (inventory: product) => {
+export const addProduct = async (product: product) => {
     try {
-        console.log('inventory '+inventory.name);
         const conn = await connect();
-        let sql = 'INSERT INTO inventory.product (name) VALUE ("'+ inventory.name +'")'
-        console.log(sql);
-        
+        let sql = 'insert into inventory.product(name, brand, quantity, price) values ("'+product.name+'", "'+product.brand+'", '+product.quantity+', '+product.price+')'
         const queryresponse =  await conn.query(sql);
-        // const response = queryresponse[0];
-        return queryresponse
+        return JSON.stringify(queryresponse)
     } catch (error) {
         console.log(error);
     }
