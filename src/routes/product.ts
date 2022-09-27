@@ -38,10 +38,10 @@ router.get('/name/:name', async (req, res) => {
 
 })
 
-router.post('/create/:name', async (req, res) => {
+router.post('/create', async (req, res) => {
     let newProduct: product = { name: req.body.name, brand: req.body.brand, price: req.body.price , quantity: req.body.quantity  };
     let response = await productService.addProduct(newProduct);
-    if(response && req.params.name){
+    if(response && req.body){
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
         .write(response)
@@ -49,5 +49,25 @@ router.post('/create/:name', async (req, res) => {
     }
     
 })
+
+router.delete('/delete/:id',async (req, res) => {
+    let response = await productService.deleteProduct(parseInt(req.params.id));
+    if(response && req.params.id){
+        res.setHeader('Content-Type', 'application/json')
+        .writeHead(200)
+        .write(response)
+        res.end(response)
+    }
+})
+
+router.post('/update/:id',async (req, res) => {
+    let response = await productService.updateProduct(parseInt(req.params.id));
+    if(response && req.params.id){
+        res.setHeader('Content-Type', 'application/json')
+        .writeHead(200)
+        .write(response)
+        res.end(response)
+    }
+});
 
 export default router;

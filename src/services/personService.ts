@@ -48,3 +48,27 @@ export const addPerson = async (person: person) => {
     }
     return false;
 }
+
+export const deletePerson = async (id:number) => {
+    try {
+        const conn = await connect();
+        let sql = 'delete from person where id =' + id
+        const queryresponse =  await conn.query(sql);
+        return JSON.stringify(queryresponse)
+    } catch (error) {
+        console.log(error);
+    }
+    return false;
+}
+
+export const updatePerson = async (id:number) => {
+    try {
+        const conn = await connect();
+        let sql = "UPDATE alumnos SET curso='secundaria' WHERE curso='primaria'" + id
+        const queryresponse =  await conn.query(sql);
+        return JSON.stringify(queryresponse)
+    } catch (error) {
+        console.log(error);
+    }
+    return false;
+}

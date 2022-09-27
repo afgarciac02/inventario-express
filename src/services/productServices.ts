@@ -49,3 +49,27 @@ export const addProduct = async (product: product) => {
     }
     return false;
 }
+
+export const deleteProduct = async (id:number) => {
+    try {
+        const conn = await connect();
+        let sql = 'delete from product where id =' + id
+        const queryresponse =  await conn.query(sql);
+        return JSON.stringify(queryresponse)
+    } catch (error) {
+        console.log(error);
+    }
+    return false;
+}
+
+export const updateProduct = async (id:number) => {
+    try {
+        const conn = await connect();
+        let sql = "UPDATE alumnos SET curso='secundaria' WHERE curso='primaria'" + id
+        const queryresponse =  await conn.query(sql);
+        return JSON.stringify(queryresponse)
+    } catch (error) {
+        console.log(error);
+    }
+    return false;
+}

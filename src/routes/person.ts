@@ -51,4 +51,24 @@ router.post('/create', async (req, res) => {
     
 })
 
+router.delete('/delete/:id',async (req, res) => {
+    let response = await personService.deletePerson(parseInt(req.params.id));
+    if(response && req.params.id){
+        res.setHeader('Content-Type', 'application/json')
+        .writeHead(200)
+        .write(response)
+        res.end(response)
+    }
+})
+
+router.post('/update/:id',async (req, res) => {
+    let response = await personService.updatePerson(parseInt(req.params.id));
+    if(response && req.params.id){
+        res.setHeader('Content-Type', 'application/json')
+        .writeHead(200)
+        .write(response)
+        res.end(response)
+    }
+});
+
 export default router;
