@@ -39,36 +39,58 @@ const express_1 = __importDefault(require("express"));
 const productService = __importStar(require("../services/productServices"));
 const router = express_1.default.Router();
 router.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let inventory = yield productService.getProduct();
-    if (inventory) {
-        res.json(inventory)
-            .setHeader('Content-Type', 'application/json')
-            .sendStatus(200);
+    let product = yield productService.getProduct();
+    if (product) {
+        res.setHeader('Content-Type', 'application/json')
+            .writeHead(200)
+            .write(product);
+        res.end(product);
     }
 }));
 router.get('/id/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let response = yield productService.getProductById(parseInt(req.params.id));
     if (response && req.params.id) {
-        res.json(response)
-            .setHeader('Content-Type', 'application/json')
-            .sendStatus(200);
+        res.setHeader('Content-Type', 'application/json')
+            .writeHead(200)
+            .write(response);
+        res.end(response);
     }
 }));
 router.get('/name/:name', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let response = yield productService.getProductByName(req.params.name);
     if (response && req.params.name) {
-        res.json(response)
-            .setHeader('Content-Type', 'application/json')
-            .sendStatus(200);
+        res.setHeader('Content-Type', 'application/json')
+            .writeHead(200)
+            .write(response);
+        res.end(response);
     }
 }));
-router.post('/create/:name', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let newProduct = { name: req.params.name, brand: '', price: 0, quantity: '' };
+router.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let newProduct = { name: req.body.name, brand: req.body.brand, price: req.body.price, quantity: req.body.quantity };
     let response = yield productService.addProduct(newProduct);
-    if (response && req.params.name) {
-        res.json(response)
-            .setHeader('Content-Type', 'application/json')
-            .sendStatus(200);
+    if (response && req.body) {
+        res.setHeader('Content-Type', 'application/json')
+            .writeHead(200)
+            .write(response);
+        res.end(response);
+    }
+}));
+router.delete('/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let response = yield productService.deleteProduct(parseInt(req.params.id));
+    if (response && req.params.id) {
+        res.setHeader('Content-Type', 'application/json')
+            .writeHead(200)
+            .write(response);
+        res.end(response);
+    }
+}));
+router.post('/update/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let response = yield productService.updateProduct(parseInt(req.params.id));
+    if (response && req.params.id) {
+        res.setHeader('Content-Type', 'application/json')
+            .writeHead(200)
+            .write(response);
+        res.end(response);
     }
 }));
 exports.default = router;

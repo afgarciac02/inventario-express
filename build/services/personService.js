@@ -9,13 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addPerson = exports.getPersonByName = exports.getPersonById = exports.getPerson = void 0;
+exports.updatePerson = exports.deletePerson = exports.addPerson = exports.getPersonByName = exports.getPersonById = exports.getPerson = void 0;
 const app_1 = require("../app");
 const getPerson = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, app_1.connect)();
-        const inventory = yield conn.query('SELECT * FROM person');
-        const response = inventory[0];
+        const persons = yield conn.query('SELECT * FROM person');
+        const response = JSON.stringify(persons);
         return response;
     }
     catch (error) {
@@ -27,8 +27,8 @@ exports.getPerson = getPerson;
 const getPersonById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, app_1.connect)();
-        const inventory = yield conn.query('SELECT * FROM person WHERE id = ' + id);
-        const response = inventory[0];
+        const persons = yield conn.query('SELECT * FROM person WHERE id = ' + id);
+        const response = JSON.stringify(persons);
         return response;
     }
     catch (error) {
@@ -40,8 +40,8 @@ exports.getPersonById = getPersonById;
 const getPersonByName = (name) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, app_1.connect)();
-        const inventory = yield conn.query('SELECT * FROM person WHERE name = ' + name);
-        const response = inventory[0];
+        const persons = yield conn.query('SELECT * FROM person WHERE name = "' + name + '"');
+        const response = JSON.stringify(persons);
         return response;
     }
     catch (error) {
@@ -50,15 +50,12 @@ const getPersonByName = (name) => __awaiter(void 0, void 0, void 0, function* ()
     return false;
 });
 exports.getPersonByName = getPersonByName;
-const addPerson = (inventory) => __awaiter(void 0, void 0, void 0, function* () {
+const addPerson = (person) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log('inventory ' + inventory.name);
         const conn = yield (0, app_1.connect)();
-        let sql = 'INSERT INTO inventory.person (name) VALUE ("' + inventory.name + '")';
-        console.log(sql);
+        let sql = 'insert into inventory.person(name, phone, mail, sex, role, address) values ("' + person.name + '", ' + person.phone + ',"' + person.mail + '", "' + person.sex + '", "' + person.rol + '", "' + person.address + '")';
         const queryresponse = yield conn.query(sql);
-        // const response = queryresponse[0];
-        return queryresponse;
+        return JSON.stringify(queryresponse);
     }
     catch (error) {
         console.log(error);
@@ -66,3 +63,29 @@ const addPerson = (inventory) => __awaiter(void 0, void 0, void 0, function* () 
     return false;
 });
 exports.addPerson = addPerson;
+const deletePerson = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const conn = yield (0, app_1.connect)();
+        let sql = 'delete from person where id =' + id;
+        const queryresponse = yield conn.query(sql);
+        return JSON.stringify(queryresponse);
+    }
+    catch (error) {
+        console.log(error);
+    }
+    return false;
+});
+exports.deletePerson = deletePerson;
+const updatePerson = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const conn = yield (0, app_1.connect)();
+        let sql = "UPDATE alumnos SET curso='secundaria' WHERE curso='primaria'" + id;
+        const queryresponse = yield conn.query(sql);
+        return JSON.stringify(queryresponse);
+    }
+    catch (error) {
+        console.log(error);
+    }
+    return false;
+});
+exports.updatePerson = updatePerson;
