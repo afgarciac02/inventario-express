@@ -1,4 +1,15 @@
 {
     "version": 2,
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
+    "builds": [
+        {
+          "src": "package.json",
+          "use": "@frontity/now"
+        }
+    ],  
+    "routes": [
+        {
+            "src": "/{.*}",
+            "dest": "/"
+        }
+    ]
 }
