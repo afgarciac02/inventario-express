@@ -1,11 +1,11 @@
 {
     "version": 2,
-    "builds": [
+    "builds":[
         {
-          "src": "package.json",
-          "use": "@frontity/now"
+            "src": "./build/index.js",
+            "use": "@vercel/node"
         }
-    ],  
+    ],
     "routes": [
         {
             "src": "/{.*}",
