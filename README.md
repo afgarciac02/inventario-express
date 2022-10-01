@@ -21,7 +21,7 @@
 
   ### Run ts to js compiler 
   ```bash
-    build: npm tsc
+    build: npm run tsc
   ```
     
    - the js project will stay in the build folder
@@ -42,3 +42,10 @@
   
   ### Install inventario-express with Docker
    
+    **Build:**
+
+      docker build -t getting-started .
+
+    **Run:**
+
+      docker run -dp 3000:3000 getting-started
