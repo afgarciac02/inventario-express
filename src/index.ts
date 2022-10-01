@@ -8,7 +8,7 @@ import inventoryRoutes from './routes/inventory';
 const app = express()
 app.use(express.json())
 
-const PORT = 80
+const PORT = 3000
 
 app.get('/ping', async (_req, res)=>{
     res.send('pong')

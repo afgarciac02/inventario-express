@@ -60,9 +60,10 @@ router.delete('/delete/:id',async (req, res) => {
     }
 })
 
-router.post('/update/:id',async (req, res) => {
-    let response = await inventoryService.updateInventory(parseInt(req.params.id));
-    if(response && req.params.id){
+router.post('/update',async (req, res) => {
+    let inventory: inventory = {id: parseInt(req.body.id), name: req.body.name,}
+    let response = await inventoryService.updateInventory(inventory);
+    if(response && req.body.id){
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
         .write(response)

@@ -52,7 +52,7 @@ export const addInventory = async (inventory: inventory) => {
 export const deleteInventory = async (id:number) => {
     try {
         const conn = await connect();
-        let sql = 'delete from product where id =' + id
+        let sql = 'delete from inventory.inventory where id =' + id
         const queryresponse =  await conn.query(sql);
         return JSON.stringify(queryresponse)
     } catch (error) {
@@ -61,10 +61,10 @@ export const deleteInventory = async (id:number) => {
     return false;
 }
 
-export const updateInventory = async (id:number) => {
+export const updateInventory = async (inventory: inventory) => {
     try {
         const conn = await connect();
-        let sql = "UPDATE alumnos SET curso='secundaria' WHERE curso='primaria'" + id
+        let sql = "UPDATE inventory.inventory SET name='"+inventory.name+"' WHERE id =" + inventory.id
         const queryresponse =  await conn.query(sql);
         return JSON.stringify(queryresponse)
     } catch (error) {
