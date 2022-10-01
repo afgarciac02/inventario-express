@@ -20,4 +20,5 @@
 
   ### run ts to js compiler 
     build: npm tsc
-      - the js project will stay in the build folder 
+    
+    - the js project will stay in the build folder 
