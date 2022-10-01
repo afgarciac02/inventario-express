@@ -23,13 +23,16 @@
     build: npm tsc
   ```
     
-    - the js project will stay in the build folder
+   - the js project will stay in the build folder
     
  ## Installation
 
   ### Install my-project with npm
+  
    **Node.js:**
-    - https://nodejs.org/en/download/
+ 
+   - https://nodejs.org/en/download/
+    
    **Download dependencies:**
     ```bash
       cd my-project
