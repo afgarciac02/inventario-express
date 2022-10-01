@@ -27,7 +27,7 @@
     
  ## Installation
 
-  ### Install my-project with npm
+  ### Install inventario-express with npm
   
    **Node.js:**
  
@@ -35,6 +35,9 @@
     
    **Download dependencies:**
    
-      cd my-project
+      cd inventario-express
       
       npm install
+  
+  ### Install inventario-express with Docker
+   
