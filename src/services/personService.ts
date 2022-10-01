@@ -61,10 +61,10 @@ export const deletePerson = async (id:number) => {
     return false;
 }
 
-export const updatePerson = async (id:number) => {
+export const updatePerson = async (person: person) => {
     try {
         const conn = await connect();
-        let sql = "UPDATE alumnos SET curso='secundaria' WHERE curso='primaria'" + id
+        let sql = "UPDATE person SET address='"+person.address+"', mail='"+person.mail+"', name='"+person.name+"', sex='"+person.sex+"', phone="+person.phone+"  WHERE id=" + person.id
         const queryresponse =  await conn.query(sql);
         return JSON.stringify(queryresponse)
     } catch (error) {

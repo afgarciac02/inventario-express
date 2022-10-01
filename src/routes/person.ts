@@ -61,9 +61,10 @@ router.delete('/delete/:id',async (req, res) => {
     }
 })
 
-router.post('/update/:id',async (req, res) => {
-    let response = await personService.updatePerson(parseInt(req.params.id));
-    if(response && req.params.id){
+router.post('/update',async (req, res) => {
+    let person: person = {id: req.body.id, address: req.body.address, mail: req.body.mail,name: req.body.name, phone: req.body.phone, rol: req.body.rol, sex: req.body.sex}
+    let response = await personService.updatePerson(person);
+    if(response && req.body.id){
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
         .write(response)
