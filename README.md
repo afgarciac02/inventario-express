@@ -7,17 +7,17 @@
 
 ## Tech Stack
 
-**Server:** Node, Express
-**Data Base:** mysql
+  **Server:** Node, Express
+  **Data Base:** mysql
 
 ## Roadmap
 
-### run local server:
-run: npm run dev
+  ### run local server:
+    run: npm run dev
 
-### run server:
-start: npm start
+  ### run server:
+    start: npm start
 
-### run ts to js compiler 
-build: npm tsc
-  - the js project will stay in the build folder 
+  ### run ts to js compiler 
+    build: npm tsc
+      - the js project will stay in the build folder 
