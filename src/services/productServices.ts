@@ -62,10 +62,10 @@ export const deleteProduct = async (id:number) => {
     return false;
 }
 
-export const updateProduct = async (id:number) => {
+export const updateProduct = async (product: product) => {
     try {
         const conn = await connect();
-        let sql = "UPDATE alumnos SET curso='secundaria' WHERE curso='primaria'" + id
+        let sql = "UPDATE product SET brand='"+product.brand+"', name='"+product.name+"', price="+product.price+", quantity="+product.quantity+" WHERE id=" + product.id
         const queryresponse =  await conn.query(sql);
         return JSON.stringify(queryresponse)
     } catch (error) {
