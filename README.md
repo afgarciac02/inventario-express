@@ -13,13 +13,13 @@
 
 ## Roadmap
 
-  ### run local server:
+  ### Run local server:
     run: npm run dev
 
-  ### run server:
+  ### Run server:
     start: npm start
 
-  ### run ts to js compiler 
+  ### Run ts to js compiler 
   ```bash
     build: npm tsc
   ```
