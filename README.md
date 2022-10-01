@@ -35,7 +35,6 @@
     
    **Download dependencies:**
    
-    ```bash
       cd my-project
+      
       npm install
-    ```
