@@ -5,7 +5,7 @@ export const getInventory = async () => {
     try {
         const conn = await connect();
         const inventory =  await conn.query('SELECT * FROM inventory');
-        const response = JSON.stringify(inventory);
+        const response = JSON.stringify(inventory[0]);
         return response;
     } catch (error) {
         console.log(error);
@@ -17,7 +17,7 @@ export const getInventoryById =async (id:number) => {
     try {
         const conn = await connect();
         const inventory =  await conn.query('SELECT * FROM inventory WHERE id = ' + id);
-        const response = JSON.stringify(inventory);
+        const response = JSON.stringify(inventory[0]);
         return response;
     } catch (error) {
         console.log(error);
@@ -29,7 +29,7 @@ export const getInventoryByName =async (name:string) => {
     try {
         const conn = await connect();
         const inventory =  await conn.query('SELECT * FROM inventory WHERE name = "' + name +'"');
-        const response = JSON.stringify(inventory);
+        const response = JSON.stringify(inventory[0]);
         return response;
     } catch (error) {
         console.log(error);   
@@ -42,7 +42,8 @@ export const addInventory = async (inventory: inventory) => {
         const conn = await connect();
         let sql = 'INSERT INTO inventory.inventory (name) VALUE ("'+ inventory.name +'")'
         const queryresponse =  await conn.query(sql);
-        return JSON.stringify(queryresponse)
+        const res = JSON.stringify(queryresponse);
+        return res? 'insert' : res 
     } catch (error) {
         console.log(error);
     }
@@ -54,7 +55,8 @@ export const deleteInventory = async (id:number) => {
         const conn = await connect();
         let sql = 'delete from inventory.inventory where id =' + id
         const queryresponse =  await conn.query(sql);
-        return JSON.stringify(queryresponse)
+        const res = JSON.stringify(queryresponse);
+        return res? 'delete' : res 
     } catch (error) {
         console.log(error);
     }
@@ -66,7 +68,8 @@ export const updateInventory = async (inventory: inventory) => {
         const conn = await connect();
         let sql = "UPDATE inventory.inventory SET name='"+inventory.name+"' WHERE id =" + inventory.id
         const queryresponse =  await conn.query(sql);
-        return JSON.stringify(queryresponse)
+        const res = JSON.stringify(queryresponse);
+        return res? 'update' : res 
     } catch (error) {
         console.log(error);
     }
