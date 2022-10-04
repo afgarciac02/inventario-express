@@ -15,7 +15,7 @@ const getInventory = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, app_1.connect)();
         const inventory = yield conn.query('SELECT * FROM inventory');
-        const response = JSON.stringify(inventory);
+        const response = JSON.stringify(inventory[0]);
         return response;
     }
     catch (error) {
@@ -28,7 +28,7 @@ const getInventoryById = (id) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const conn = yield (0, app_1.connect)();
         const inventory = yield conn.query('SELECT * FROM inventory WHERE id = ' + id);
-        const response = JSON.stringify(inventory);
+        const response = JSON.stringify(inventory[0]);
         return response;
     }
     catch (error) {
@@ -41,7 +41,7 @@ const getInventoryByName = (name) => __awaiter(void 0, void 0, void 0, function*
     try {
         const conn = yield (0, app_1.connect)();
         const inventory = yield conn.query('SELECT * FROM inventory WHERE name = "' + name + '"');
-        const response = JSON.stringify(inventory);
+        const response = JSON.stringify(inventory[0]);
         return response;
     }
     catch (error) {
@@ -55,7 +55,8 @@ const addInventory = (inventory) => __awaiter(void 0, void 0, void 0, function* 
         const conn = yield (0, app_1.connect)();
         let sql = 'INSERT INTO inventory.inventory (name) VALUE ("' + inventory.name + '")';
         const queryresponse = yield conn.query(sql);
-        return JSON.stringify(queryresponse);
+        const res = JSON.stringify(queryresponse);
+        return res ? 'insert' : res;
     }
     catch (error) {
         console.log(error);
@@ -66,9 +67,10 @@ exports.addInventory = addInventory;
 const deleteInventory = (id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, app_1.connect)();
-        let sql = 'delete from product where id =' + id;
+        let sql = 'delete from inventory.inventory where id =' + id;
         const queryresponse = yield conn.query(sql);
-        return JSON.stringify(queryresponse);
+        const res = JSON.stringify(queryresponse);
+        return res ? 'delete' : res;
     }
     catch (error) {
         console.log(error);
@@ -76,12 +78,13 @@ const deleteInventory = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return false;
 });
 exports.deleteInventory = deleteInventory;
-const updateInventory = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const updateInventory = (inventory) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield (0, app_1.connect)();
-        let sql = "UPDATE alumnos SET curso='secundaria' WHERE curso='primaria'" + id;
+        let sql = "UPDATE inventory.inventory SET name='" + inventory.name + "' WHERE id =" + inventory.id;
         const queryresponse = yield conn.query(sql);
-        return JSON.stringify(queryresponse);
+        const res = JSON.stringify(queryresponse);
+        return res ? 'update' : res;
     }
     catch (error) {
         console.log(error);

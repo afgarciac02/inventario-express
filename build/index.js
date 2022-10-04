@@ -19,7 +19,7 @@ const person_1 = __importDefault(require("./routes/person"));
 const inventory_1 = __importDefault(require("./routes/inventory"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-const PORT = 80;
+const PORT = 3000;
 app.get('/ping', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send('pong');
 }));

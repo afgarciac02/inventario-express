@@ -42,8 +42,7 @@ router.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let product = yield productService.getProduct();
     if (product) {
         res.setHeader('Content-Type', 'application/json')
-            .writeHead(200)
-            .write(product);
+            .writeHead(200);
         res.end(product);
     }
 }));
@@ -51,8 +50,7 @@ router.get('/id/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     let response = yield productService.getProductById(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
-            .writeHead(200)
-            .write(response);
+            .writeHead(200);
         res.end(response);
     }
 }));
@@ -60,8 +58,7 @@ router.get('/name/:name', (req, res) => __awaiter(void 0, void 0, void 0, functi
     let response = yield productService.getProductByName(req.params.name);
     if (response && req.params.name) {
         res.setHeader('Content-Type', 'application/json')
-            .writeHead(200)
-            .write(response);
+            .writeHead(200);
         res.end(response);
     }
 }));
@@ -79,17 +76,16 @@ router.delete('/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
     let response = yield productService.deleteProduct(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
-            .writeHead(200)
-            .write(response);
+            .writeHead(200);
         res.end(response);
     }
 }));
-router.post('/update/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let response = yield productService.updateProduct(parseInt(req.params.id));
-    if (response && req.params.id) {
+router.post('/update', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let product = { id: req.body.id, brand: req.body.brand, name: req.body.name, price: req.body.price, quantity: req.body.quantity };
+    let response = yield productService.updateProduct(product);
+    if (response && req.body.id) {
         res.setHeader('Content-Type', 'application/json')
-            .writeHead(200)
-            .write(response);
+            .writeHead(200);
         res.end(response);
     }
 }));
