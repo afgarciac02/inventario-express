@@ -9,7 +9,6 @@ router.get('/', async (_req, res) => {
     if (inventory) {
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
-        .write(inventory)
         res.end(inventory)
     }
 });
@@ -20,7 +19,6 @@ router.get('/id/:id', async (req, res) => {
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
-        .write(response)
         res.end(response)
     }
 
@@ -32,7 +30,6 @@ router.get('/name/:name', async (req, res) => {
         if(response && req.params.name){
             res.setHeader('Content-Type', 'application/json')
             .writeHead(200)
-            .write(response)
             res.end(response)
         }
 
@@ -44,7 +41,6 @@ router.post('/create/:name', async (req, res) => {
     if(response && req.params.name){
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
-        .write(response)
         res.end(response)
     }
     
@@ -55,7 +51,6 @@ router.delete('/delete/:id',async (req, res) => {
     if(response && req.params.id){
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
-        .write(response)
         res.end(response)
     }
 })
@@ -66,7 +61,6 @@ router.post('/update',async (req, res) => {
     if(response && req.body.id){
         res.setHeader('Content-Type', 'application/json')
         .writeHead(200)
-        .write(response)
         res.end(response)
     }
 });
