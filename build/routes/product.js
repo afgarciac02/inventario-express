@@ -42,6 +42,10 @@ router.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let product = yield productService.getProduct();
     if (product) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(product);
     }
@@ -50,6 +54,10 @@ router.get('/id/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     let response = yield productService.getProductById(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -58,6 +66,10 @@ router.get('/name/:name', (req, res) => __awaiter(void 0, void 0, void 0, functi
     let response = yield productService.getProductByName(req.params.name);
     if (response && req.params.name) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -67,8 +79,11 @@ router.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function*
     let response = yield productService.addProduct(newProduct);
     if (response && req.body) {
         res.setHeader('Content-Type', 'application/json')
-            .writeHead(200)
-            .write(response);
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
+            .writeHead(200);
         res.end(response);
     }
 }));
@@ -76,6 +91,10 @@ router.delete('/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
     let response = yield productService.deleteProduct(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -85,6 +104,10 @@ router.post('/update', (req, res) => __awaiter(void 0, void 0, void 0, function*
     let response = yield productService.updateProduct(product);
     if (response && req.body.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }

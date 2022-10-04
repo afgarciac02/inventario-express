@@ -42,6 +42,10 @@ router.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let person = yield personService.getPerson();
     if (person) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(person);
     }
@@ -50,6 +54,10 @@ router.get('/id/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     let response = yield personService.getPersonById(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -58,6 +66,10 @@ router.get('/name/:name', (req, res) => __awaiter(void 0, void 0, void 0, functi
     let response = yield personService.getPersonByName(req.params.name);
     if (response && req.params.name) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -68,6 +80,10 @@ router.post('/create', (req, res) => __awaiter(void 0, void 0, void 0, function*
     let response = yield personService.addPerson(newPerson);
     if (response) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -76,6 +92,10 @@ router.delete('/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
     let response = yield personService.deletePerson(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -85,6 +105,10 @@ router.post('/update', (req, res) => __awaiter(void 0, void 0, void 0, function*
     let response = yield personService.updatePerson(person);
     if (response && req.body.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }

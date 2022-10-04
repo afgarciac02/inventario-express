@@ -21,7 +21,13 @@ const app = (0, express_1.default)();
 app.use(express_1.default.json());
 const PORT = 3000;
 app.get('/ping', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.send('pong');
+    res.setHeader('Content-Type', 'application/json')
+        .setHeader('Access-Control-Allow-Origin', '*')
+        .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+        .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+        .setHeader('Access-Control-Allow-Credentials', 'true')
+        .writeHead(200);
+    res.end('pong');
 }));
 app.use('/api/product', product_1.default);
 app.use('/api/person', person_1.default);

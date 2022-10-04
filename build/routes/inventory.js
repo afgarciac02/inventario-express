@@ -42,6 +42,10 @@ router.get('/', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let inventory = yield inventoryService.getInventory();
     if (inventory) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(inventory);
     }
@@ -50,6 +54,10 @@ router.get('/id/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     let response = yield inventoryService.getInventoryById(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -58,6 +66,10 @@ router.get('/name/:name', (req, res) => __awaiter(void 0, void 0, void 0, functi
     let response = yield inventoryService.getInventoryByName(req.params.name);
     if (response && req.params.name) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -67,6 +79,10 @@ router.post('/create/:name', (req, res) => __awaiter(void 0, void 0, void 0, fun
     let response = yield inventoryService.addInventory(newInventary);
     if (response && req.params.name) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -75,6 +91,10 @@ router.delete('/delete/:id', (req, res) => __awaiter(void 0, void 0, void 0, fun
     let response = yield inventoryService.deleteInventory(parseInt(req.params.id));
     if (response && req.params.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
@@ -84,6 +104,10 @@ router.post('/update', (req, res) => __awaiter(void 0, void 0, void 0, function*
     let response = yield inventoryService.updateInventory(inventory);
     if (response && req.body.id) {
         res.setHeader('Content-Type', 'application/json')
+            .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type')
+            .setHeader('Access-Control-Allow-Credentials', 'true')
             .writeHead(200);
         res.end(response);
     }
