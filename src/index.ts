@@ -1,4 +1,5 @@
 import express from 'express' //ESModules
+const cors = require('cors');
 //const express = require('express') -> commonjs
 
 import productRoutes from './routes/product';
@@ -7,6 +8,7 @@ import inventoryRoutes from './routes/inventory';
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 const PORT = 3000
 
