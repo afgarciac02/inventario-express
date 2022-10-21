@@ -41,7 +41,7 @@ export const getProductByName =async (name:string) => {
 export const addProduct = async (product: product) => {
     try {
         const conn = await connect();
-        let sql = 'insert into inventory.product(name, brand, quantity, price) values ("'+product.name+'", "'+product.brand+'", '+product.quantity+', '+product.price+')'
+        let sql = 'insert into inventory.product(name, brand, quantity, price) values ("'+product.name+'", "'+product.brand+'", '+product.quantity+', '+product.price+')';
         const queryresponse =  await conn.query(sql);
         const res = JSON.stringify(queryresponse);
         return res? 'insert' : res 

@@ -56,6 +56,7 @@ router.post('/create', async (req, res) => {
     if (response && req.body) {
         res.setHeader('Content-Type', 'application/json')
             .setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader("Access-Control-Allow-Headers", "X-Requested-With")
             .setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
             .setHeader('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method')
             .setHeader('Allow', 'GET, POST, OPTIONS, PUT, DELETE')
